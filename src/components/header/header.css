@@ -1,0 +1,16 @@
+.main-header{
+    justify-content: flex-end;
+    background-color: #495057;
+    height: 55px;
+    align-items: center;
+}
+
+.div-input{
+    margin-right: 10px;
+    width: 200px;
+}
+.search-btn{
+    height: 35px;
+    margin-right: 10px;
+    width: 150px;
+}
