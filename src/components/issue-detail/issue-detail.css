@@ -1,0 +1,25 @@
+.detail-container{
+    padding: 40px 0 40px 0 ;
+    width: 90%;
+    margin: auto;
+}
+.back-btn-link{
+    text-decoration: none;
+    color: white;
+}
+.back-btn-link:hover{
+    text-decoration: none;
+    color: rgb(222, 222, 222);
+}
+
+.back-btn{
+    height: 35px;
+    margin-right: 10px;
+    min-width: 150px;
+}
+
+.div-back-btn{
+    margin-top: 20px;
+    display: flex;
+    justify-content: flex-end;
+}

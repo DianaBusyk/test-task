@@ -1,10 +1,13 @@
 .table-container{
     margin-top: 30px;
+    cursor: pointer;
 }
 .table-issues{
     width: 80%;
     margin: auto;
+   
 }
 th{
     width: 20%;
+    color: #495057;
 }
