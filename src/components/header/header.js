@@ -1,11 +1,35 @@
 import React from "react";
 import "./header.css";
-import getGithubIssues from "../api/api";
+import { getGithubIssues } from "../api/api";
 import { Link } from "react-router-dom";
 
 const Header = (props) => {
-  let searchIssues = () => {
-    getGithubIssues(props.org, props.repo).then((data) => props.setIssues(data));
+  
+  const searchIssues = () => {
+    props.setIsLoading(true);
+    
+    getGithubIssues(props.org, props.repo).then((data) => {
+      const currentLabels = [];
+      const currentAssignees = [];
+
+      data.forEach(issue => {
+        issue.labels.forEach(label => {
+          if(!currentLabels.some(existingLabel => existingLabel.id === label.id)) {
+            currentLabels.push(label);
+          }
+        })
+        issue.assignees.forEach(assignee => {
+          if(!currentAssignees.some(existingAssignee => existingAssignee.id === assignee.id)) {
+            currentAssignees.push(assignee);
+          }
+        })
+      });
+      props.setIsLoading(false);
+      props.setShownIssues(data);
+      props.setRepoLabels(currentLabels)
+      props.setRepoAssignees(currentAssignees);
+      return props.setIssues([...data]);
+    });
   };
   
   return (

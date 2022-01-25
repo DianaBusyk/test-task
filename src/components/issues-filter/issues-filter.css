@@ -3,6 +3,7 @@
     margin: auto;
     display: flex;
     flex-direction: row;
+    
 }
 .form-select{
     width: 150px;
@@ -14,8 +15,17 @@
     flex-direction: row;
     width: 100%;
     justify-content: flex-end;
+    
 }
+
+
 .table-title{
     width: 200px;
     color: #495057;
+}
+img{
+    margin-top: 3px;
+    width: 25px;
+    height: 25px;
+    margin-right: 10px;
 }

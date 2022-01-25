@@ -41,7 +41,7 @@ function IssueDetail() {
         </tbody>
       </table>
       <div className="issue-detail-body">
-      {issue ? issue.body : "No body"}
+      <div dangerouslySetInnerHTML={{__html: issue.body}} />
       </div>
       <div className="div-back-btn">
         <button className="btn btn-primary back-btn">

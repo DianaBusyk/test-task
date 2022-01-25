@@ -1,30 +1,39 @@
 import React from "react";
 import "./issues-filter.css";
-import "../icons/filter.png";
+import img from '../icons/filter.png'
 
-const IssuesFilter = () => {
+const IssuesFilter = (props) => {
+  const filterIssues = (field, id) => {
+    const filteredIssues = props.issues.filter((issue) => {
+      return issue[field].some((item) => item.id === id)
+    })
+    props.setShownIssues(filteredIssues)
+  }
+
+  const setSortingDirection = (e) => {
+    const direction = e.target.value;
+    props.setSortDirection(direction);
+  }
+
   return (
     <div className="filter-container">
       <h4 className="table-title">Table of issues</h4>
       <div className="select-container">
-        <select className="form-select" id="exampleSelect">
-          <option>Label</option>
-          <option>label 1</option>
-          <option>label 2</option>
+      <img src={img} alt="img"/>
+      
+        <select className="form-select" onChange={(e) => filterIssues('labels', parseInt(e.target.value))}>
+          {props.repoLabels.map((label, key) => <option key={key} value={label.id}>{label.name}</option>)}
         </select>
-        <select className="form-select" id="exampleSelect">
-          <option>Assignee</option>
-          <option>user 1</option>
-          <option>user 2</option>
+        <select className="form-select" onChange={(e) => filterIssues('assignees', parseInt(e.target.value))}>
+          {props.repoAssignees.map((assignee, key) => <option key={key} value={assignee.id}>{assignee.login}</option>)}
         </select>
-        <select className="form-select" id="exampleSelect">
-          <option>Sort by time</option>
-          <option>of the newest</option>
-          <option>of the oldest</option>
+        <select className="form-select" onChange={setSortingDirection} value={props.sortDirection}>
+          <option value='desc'>of the newest</option>
+          <option value='asc'>of the oldest</option>
         </select>
-        <button className="btn btn-secondary search-btn">Update Search</button>
       </div>
     </div>
+    
   );
 };
 
