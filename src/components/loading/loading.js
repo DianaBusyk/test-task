@@ -2,12 +2,9 @@ import React from 'react';
 import "./loading.css"
 const Loading = () => {
   return (
-    <div className="lds-css">
-      <div className="lds-double-ring">
-        <div></div>
-        <div></div>
-      </div>
-    </div>
+    <div class="loadingio-spinner-spinner-mld0i4lwhy"><div class="ldio-8p4k9hyewni">
+    <div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
+    </div></div>
   );
 };
 
