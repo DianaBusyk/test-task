@@ -10,4 +10,3 @@ export const getIssue = (org, repo, issueNumber) => {
   return axios.get(url).then((res) => res.data);
 }
 
-export default getGithubIssues;

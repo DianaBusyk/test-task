@@ -5,10 +5,13 @@ import { Link } from "react-router-dom";
 
 const Header = (props) => {
   
+  const {org, repo, setOrg, setRepo, setIsLoading, setShownIssues, 
+          setRepoLabels, setRepoAssignees, setIssues} = props;
+
   const searchIssues = () => {
-    props.setIsLoading(true);
+   setIsLoading(true);
     
-    getGithubIssues(props.org, props.repo).then((data) => {
+    getGithubIssues(org, repo).then((data) => {
       const currentLabels = [];
       const currentAssignees = [];
 
@@ -24,11 +27,11 @@ const Header = (props) => {
           }
         })
       });
-      props.setIsLoading(false);
-      props.setShownIssues(data);
-      props.setRepoLabels(currentLabels)
-      props.setRepoAssignees(currentAssignees);
-      return props.setIssues([...data]);
+      setIsLoading(false);
+      setShownIssues(data);
+      setRepoLabels(currentLabels); // дістали унікальні значення
+      setRepoAssignees(currentAssignees);
+      setIssues([...data]); 
     });
   };
   
@@ -45,8 +48,8 @@ const Header = (props) => {
             name="username"
             type="text"
             placeholder="Github username"
-            onChange={(e) => props.setOrg(e.target.value)}
-            value={props.org}
+            onChange={(e) => setOrg(e.target.value)}
+            value={org}
           />
         </div>
         <div className="div-input">
@@ -56,8 +59,8 @@ const Header = (props) => {
             name="repo"
             type="text"
             placeholder="Github repo"
-            onChange={(e) => props.setRepo(e.target.value)}
-            value={props.repo}
+            onChange={(e) => setRepo(e.target.value)}
+            value={repo}
           />
         </div>
         <button className="btn btn-secondary search-btn" onClick={searchIssues}>

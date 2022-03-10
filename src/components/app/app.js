@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import Header from "../header/header";
 import { Outlet } from "react-router-dom";
 
@@ -6,14 +6,14 @@ import "./app.css";
 
 
 function App() {
-  const [org, setOrg] = React.useState("facebook");
-  const [repo, setRepo] = React.useState("create-react-app");
-  const [issues, setIssues] = React.useState([]);
-  const [repoLabels, setRepoLabels] = React.useState([]);
-  const [repoAssignees, setRepoAssignees] = React.useState([]);
-  const [shownIssues, setShownIssues] = React.useState([]);
-
-  const [isLoading, setIsLoading ]= React.useState(false);
+  const [org, setOrg] = useState("facebook");
+  const [repo, setRepo] = useState("create-react-app");
+  const [issues, setIssues] = useState([]);
+  const [repoLabels, setRepoLabels] = useState([]);
+  const [repoAssignees, setRepoAssignees] = useState([]);
+  const [shownIssues, setShownIssues] = useState([]); 
+  
+  const [isLoading, setIsLoading ]= useState(false);
 
   return (
     <div className="App">

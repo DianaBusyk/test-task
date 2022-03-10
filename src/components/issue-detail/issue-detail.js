@@ -5,10 +5,11 @@ import "./issue-detail.css"
 function IssueDetail() {
   const [issues] = useOutletContext();
 
-  let params = useParams();
+  const {issueNumber} = useParams();
   let issue = issues.find(
-    (issue) => issue.number === parseInt(params.issueNumber)
+    (issue) => issue.number === parseInt(issueNumber)
   );
+
   return (
     <div className="detail-container">
       <h4>Details of Issue</h4>
