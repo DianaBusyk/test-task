@@ -1,7 +1,8 @@
 # GitApp
 
 # Description
-This is a React application that allows user to open a list of issues from a specified Github repository using Github API. 
+This is a React application that allows user to open a list of issues from a specified Github repository using Github API.
+User can filter by label, filter by assignee and sort list of issues by newest or oldest. Also open each issue in a new window to see all the details.
 
 # Example
 
