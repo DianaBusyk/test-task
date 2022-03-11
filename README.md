@@ -17,5 +17,3 @@ User can filter issues by label, filter by assignee and sort list of issues by n
 
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-# Time spent
-20h
