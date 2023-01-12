@@ -11,6 +11,7 @@ import IssuesTable from "./components/issues-table/issues-table";
 
 
 const rootElement = document.getElementById("root");
+
 render(
   <BrowserRouter>
     <Routes>

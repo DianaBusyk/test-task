@@ -1,11 +1,38 @@
 import React from "react";
 import "./header.css";
-import getGithubIssues from "../api/api";
+import { getGithubIssues } from "../api/api";
 import { Link } from "react-router-dom";
 
 const Header = (props) => {
-  let searchIssues = () => {
-    getGithubIssues(props.org, props.repo).then((data) => props.setIssues(data));
+  
+  const {org, repo, setOrg, setRepo, setIsLoading, setShownIssues, 
+          setRepoLabels, setRepoAssignees, setIssues} = props;
+
+  const searchIssues = () => {
+   setIsLoading(true);
+    
+    getGithubIssues(org, repo).then((data) => {
+      const currentLabels = [];
+      const currentAssignees = [];
+
+      data.forEach(issue => {
+        issue.labels.forEach(label => {
+          if(!currentLabels.some(existingLabel => existingLabel.id === label.id)) {
+            currentLabels.push(label);
+          }
+        })
+        issue.assignees.forEach(assignee => {
+          if(!currentAssignees.some(existingAssignee => existingAssignee.id === assignee.id)) {
+            currentAssignees.push(assignee);
+          }
+        })
+      });
+      setIsLoading(false);
+      setShownIssues(data);
+      setRepoLabels(currentLabels); // дістали унікальні значення
+      setRepoAssignees(currentAssignees);
+      setIssues([...data]); 
+    });
   };
   
   return (
@@ -21,8 +48,8 @@ const Header = (props) => {
             name="username"
             type="text"
             placeholder="Github username"
-            onChange={(e) => props.setOrg(e.target.value)}
-            value={props.org}
+            onChange={(e) => setOrg(e.target.value)}
+            value={org}
           />
         </div>
         <div className="div-input">
@@ -32,8 +59,8 @@ const Header = (props) => {
             name="repo"
             type="text"
             placeholder="Github repo"
-            onChange={(e) => props.setRepo(e.target.value)}
-            value={props.repo}
+            onChange={(e) => setRepo(e.target.value)}
+            value={repo}
           />
         </div>
         <button className="btn btn-secondary search-btn" onClick={searchIssues}>
